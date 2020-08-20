@@ -69,6 +69,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       setData({ token, account });
     } catch (err) {
+      console.log(err);
+
       alert('Dados de usuário inválidos!');
     }
   }, []);
