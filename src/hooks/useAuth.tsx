@@ -1,13 +1,6 @@
+/* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/ban-types */
-import React, {
-  createContext,
-  useCallback,
-  useState,
-  useEffect,
-  useContext,
-} from 'react';
-
-import { useVerification } from '.';
+import React, { createContext, useCallback, useState, useContext } from 'react';
 
 import api from '../services/api';
 
@@ -22,6 +15,7 @@ export interface User {
   email: string;
   birthday: string;
   avatar: string;
+  role: string;
 }
 
 interface Account {
@@ -55,8 +49,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const { cancelVerify } = useVerification();
-
   const signIn = useCallback(async ({ email, password }) => {
     try {
       const response = await api.post('/sessions', {
@@ -65,6 +57,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       });
 
       const { account, token } = response.data;
+
+      if (account.user.role !== 'admin') {
+        return alert('Somente administradores tem essa permissão');
+      }
 
       localStorage.setItem('@memoria:token', token);
       localStorage.setItem('@memoria:account', JSON.stringify(account));
@@ -85,10 +81,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem('@memoria:token');
     localStorage.removeItem('@memoria:account');
 
-    cancelVerify();
-
     setData({} as AuthState);
-  }, [cancelVerify, data]);
+  }, [data]);
 
   const updateAvatar = useCallback(
     async (user: User) => {

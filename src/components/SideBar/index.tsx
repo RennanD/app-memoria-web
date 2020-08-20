@@ -4,8 +4,11 @@ import { FiHeart, FiMessageSquare, FiLogIn } from 'react-icons/fi';
 
 import { Container, Nav } from './styles';
 import { logo } from '../../assets';
+import { useAuth } from '../../hooks';
 
 const SideBar: React.FC = () => {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <header>
@@ -25,7 +28,7 @@ const SideBar: React.FC = () => {
       </ul>
 
       <footer>
-        <button type="button">
+        <button type="button" onClick={signOut}>
           Sair
           <FiLogIn size={24} color="#fff" />
         </button>

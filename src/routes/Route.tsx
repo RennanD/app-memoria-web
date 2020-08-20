@@ -5,6 +5,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+// import { Container } from './styles';
 import { useAuth } from '../hooks';
 
 interface RouteProps extends RouteDOMProps {
@@ -28,7 +29,7 @@ const Route: React.FC<RouteProps> = ({
         ) : (
           <Redirect
             to={{
-              pathname: isPrivate ? '/' : 'dashboard',
+              pathname: isPrivate ? '/' : '/dashboard',
               state: { from: location },
             }}
           />
