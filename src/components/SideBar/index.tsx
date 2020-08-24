@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FiHeart, FiMessageSquare, FiLogIn } from 'react-icons/fi';
+import { FiHeart, FiMessageSquare, FiLogIn, FiCalendar } from 'react-icons/fi';
 
 import { Container, Nav } from './styles';
 import { logo } from '../../assets';
@@ -24,6 +24,10 @@ const SideBar: React.FC = () => {
         <li>
           <FiMessageSquare size={24} color="#fff" />
           <Nav to="/messages">Mensagens</Nav>
+        </li>
+        <li>
+          <FiCalendar size={24} color="#fff" />
+          <Nav to="/generic-dates">Criar datas</Nav>
         </li>
       </ul>
 
