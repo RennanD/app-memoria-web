@@ -32,18 +32,24 @@ export const Container = styled.div`
       max-width: 400px;
       margin: 200px auto;
 
-      input {
+      .input-block {
         color: #333;
         border: 1px solid #ddd;
         border-radius: 20px;
         padding: 10px 20px;
+        background: #fff;
 
-        & + input {
+        input {
+          border: 0;
+          background: none;
+        }
+
+        & + .input-block {
           margin-top: 10px;
         }
       }
 
-      button {
+      > button {
         background: #65c4b0;
         color: #fff;
         border: 0;

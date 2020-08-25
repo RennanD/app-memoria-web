@@ -1,12 +1,16 @@
 import React, { useCallback, useState, FormEvent } from 'react';
 
+import pt from 'date-fns/locale/pt-BR';
+
+import DatePicker from 'react-datepicker';
+
 import { Container } from './styles';
 
 import SideBar from '../../components/SideBar';
 import api from '../../services/api';
 
 const GenericDates: React.FC = () => {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState<Date | null>();
   const [description, setDescription] = useState('');
 
   const handleSubmit = useCallback(
@@ -26,6 +30,12 @@ const GenericDates: React.FC = () => {
     [date, description],
   );
 
+  const handleChangeDate = useCallback((newDate: any) => {
+    if (newDate) {
+      setDate(newDate);
+    }
+  }, []);
+
   return (
     <Container>
       <SideBar />
@@ -35,19 +45,26 @@ const GenericDates: React.FC = () => {
         </header>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="date"
-            value={date}
-            onChange={e => setDate(e.target.value)}
-            name=""
-            id=""
-          />
-          <input
-            type="text"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            placeholder="Descrição/Título para data"
-          />
+          <div className="input-block">
+            <DatePicker
+              selected={date}
+              onChange={newDate => handleChangeDate(newDate)}
+              locale={pt}
+              timeFormat="p"
+              dateFormat="dd 'de' MMMM"
+              timeCaption="time"
+              placeholderText="Selecione uma data"
+            />
+          </div>
+
+          <div className="input-block">
+            <input
+              type="text"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              placeholder="Descrição/Título para data"
+            />
+          </div>
 
           <button type="submit">Cadastrar</button>
         </form>
