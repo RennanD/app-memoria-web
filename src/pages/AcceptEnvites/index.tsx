@@ -1,24 +1,74 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-// import { Container } from './styles';
+import { Container, ConfirmButton, CancelButton } from './styles';
+
+interface SelectedOption {
+  selected: boolean;
+  type: 'confirmed' | 'canceled';
+}
 
 const AcceptEnvites: React.FC = () => {
-  const [link, setLink] = useState('');
-  useEffect(() => {
-    const isIos =
-      !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+  const [selectedOption, setSelectedOption] = useState<SelectedOption>(
+    {} as SelectedOption,
+  );
 
-    const androidLink =
-      'intent:#Intent;scheme=app-memoria://AcceptEnvites;package=com.resolute.app_memoria;end';
+  const handleClickOnActionButton = useCallback(
+    (type: 'canceled' | 'confirmed') => {
+      setSelectedOption({
+        selected: true,
+        type,
+      });
+    },
+    [],
+  );
 
-    const iosLink = 'app-memoria://AcceptEnvites';
+  if (selectedOption.selected) {
+    return (
+      <Container>
+        <div className="header">
+          <strong>Aceitar convite</strong>
+        </div>
 
-    setLink(isIos ? iosLink : androidLink);
-  }, []);
+        <div className="content">
+          <img src="" alt="" />
+          {selectedOption.type === 'confirmed' ? (
+            <span>
+              Rennan agora faz parte da sua lista de contatos do Memória.
+            </span>
+          ) : (
+            <span>
+              Que pena que não aceitou, mas poderá adicionar Rennan a sua lista
+              de contantos em outro momento.
+            </span>
+          )}
+        </div>
+      </Container>
+    );
+  }
+
   return (
-    <div>
-      <a href={link}>Abrir</a>
-    </div>
+    <Container>
+      <div className="header">
+        <strong>Aceitar convite</strong>
+      </div>
+
+      <div className="content">
+        <img src="" alt="" />
+        <span>
+          Rennan deseja fazer parte da sua lista de contatos do Memória, clique
+          abaixo para aceitar ou recusar
+        </span>
+
+        <div className="buttonsContainer">
+          <CancelButton onClick={() => handleClickOnActionButton('canceled')}>
+            Cancelar
+          </CancelButton>
+          <ConfirmButton onClick={() => handleClickOnActionButton('confirmed')}>
+            Confirmar
+          </ConfirmButton>
+        </div>
+      </div>
+    </Container>
   );
 };
 

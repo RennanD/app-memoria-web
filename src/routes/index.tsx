@@ -12,7 +12,7 @@ const Routes: React.FC = () => {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Login} />
-      <Route path="/AcceptEnvites" exact component={AcceptEnvites} />
+      <Route path="/accept-envites" exact component={AcceptEnvites} />
 
       <Route path="/dashboard" component={Preferences} isPrivate />
       <Route path="/messages" component={Messages} isPrivate />
