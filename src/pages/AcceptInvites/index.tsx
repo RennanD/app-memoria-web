@@ -7,10 +7,12 @@ interface SelectedOption {
   type: 'confirmed' | 'canceled';
 }
 
-const AcceptEnvites: React.FC = () => {
+const AcceptInvites: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<SelectedOption>(
     {} as SelectedOption,
   );
+
+  const [invite, setEnvite] = useState({});
 
   const handleClickOnActionButton = useCallback(
     (type: 'canceled' | 'confirmed') => {
@@ -72,4 +74,4 @@ const AcceptEnvites: React.FC = () => {
   );
 };
 
-export default AcceptEnvites;
+export default AcceptInvites;

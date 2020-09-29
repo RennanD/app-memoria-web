@@ -6,13 +6,13 @@ import Login from '../pages/Login';
 import Preferences from '../pages/Preferences';
 import Messages from '../pages/Messages';
 import GenericDates from '../pages/GenericDates';
-import AcceptEnvites from '../pages/AcceptEnvites';
+import AcceptInvites from '../pages/AcceptInvites';
 
 const Routes: React.FC = () => {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Login} />
-      <Route path="/accept-envites" exact component={AcceptEnvites} />
+      <Route path="/accept-invites" exact component={AcceptInvites} />
 
       <Route path="/dashboard" component={Preferences} isPrivate />
       <Route path="/messages" component={Messages} isPrivate />
