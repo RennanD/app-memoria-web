@@ -9,12 +9,38 @@ import GenericDates from '../pages/GenericDates';
 import AcceptInvites from '../pages/AcceptInvites';
 
 const Accept: React.FC = () => {
-  useEffect(() => {
-    window.location.href =
-      'https://expo.io/--/to-exp/exp%3A%2F%2Fxx-i8s.anonymous.mobile.exp.direct%3A80';
-  }, []);
+  // useEffect(() => {
+  //   window.location.href = 'app-memoria://';
+  // }, []);
 
-  return <div />;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        height: '100vh',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 30,
+      }}
+    >
+      <a
+        style={{
+          height: 46,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          backgroundColor: '#65c4b0',
+          textAlign: 'center',
+          textDecoration: 'none',
+        }}
+        href="app-memoria://"
+      >
+        <strong style={{ color: '#fff' }}>Abir Convite</strong>
+      </a>
+    </div>
+  );
 };
 
 const Routes: React.FC = () => {
@@ -22,7 +48,7 @@ const Routes: React.FC = () => {
     <BrowserRouter>
       <Route path="/" exact component={Login} />
       <Route path="/accept-invites" exact component={AcceptInvites} />
-      <Route path="/teste" exact component={Accept} />
+      <Route path="/accept" exact component={Accept} />
 
       <Route path="/dashboard" component={Preferences} isPrivate />
       <Route path="/messages" component={Messages} isPrivate />
