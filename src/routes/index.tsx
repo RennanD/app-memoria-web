@@ -31,7 +31,7 @@ const Accept: React.FC = () => {
           textAlign: 'center',
           textDecoration: 'none',
         }}
-        href="app-memoria://AcceptEnvites"
+        href="app-memoria://AcceptInvites"
       >
         <strong style={{ color: '#fff' }}>Abir Convite</strong>
       </a>
