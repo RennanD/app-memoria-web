@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import Route from './Route';
 import Login from '../pages/Login';
@@ -9,10 +9,6 @@ import GenericDates from '../pages/GenericDates';
 import AcceptInvites from '../pages/AcceptInvites';
 
 const Accept: React.FC = () => {
-  // useEffect(() => {
-  //   window.location.href = 'app-memoria://';
-  // }, []);
-
   return (
     <div
       style={{
@@ -35,7 +31,7 @@ const Accept: React.FC = () => {
           textAlign: 'center',
           textDecoration: 'none',
         }}
-        href="app-memoria://"
+        href="app-memoria://AcceptEnvites"
       >
         <strong style={{ color: '#fff' }}>Abir Convite</strong>
       </a>
