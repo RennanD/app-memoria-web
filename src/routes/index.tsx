@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useRouteMatch } from 'react-router-dom';
 
 import Route from './Route';
 import Login from '../pages/Login';
@@ -8,7 +8,14 @@ import Messages from '../pages/Messages';
 import GenericDates from '../pages/GenericDates';
 import AcceptInvites from '../pages/AcceptInvites';
 
+interface RouteParams {
+  contact_id: string;
+}
+
 const Accept: React.FC = () => {
+  const { params } = useRouteMatch<RouteParams>();
+
+  const url = `app-memoria://AcceptInvites?contact_id=${params.contact_id}`;
   return (
     <div
       style={{
@@ -31,7 +38,7 @@ const Accept: React.FC = () => {
           textAlign: 'center',
           textDecoration: 'none',
         }}
-        href="app-memoria://AcceptInvites"
+        href={url}
       >
         <strong style={{ color: '#fff' }}>Abir Convite</strong>
       </a>
