@@ -15,7 +15,9 @@ interface RouteParams {
 const Accept: React.FC = () => {
   const { params } = useRouteMatch<RouteParams>();
 
-  const url = `app-memoria://AcceptInvites?contact_id=${params.contact_id}`;
+  console.log(params);
+
+  const url = `app-memoria://AcceptInvites/${params.contact_id}`;
   return (
     <div
       style={{
