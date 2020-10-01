@@ -51,7 +51,7 @@ const Routes: React.FC = () => {
     <BrowserRouter>
       <Route path="/" exact component={Login} />
       <Route path="/accept-invites" exact component={AcceptInvites} />
-      <Route path="/accept" exact component={Accept} />
+      <Route path="/accept/:contact_id" exact component={Accept} />
 
       <Route path="/dashboard" component={Preferences} isPrivate />
       <Route path="/messages" component={Messages} isPrivate />
