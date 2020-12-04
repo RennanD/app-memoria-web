@@ -76,15 +76,11 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(async () => {
-    const { account } = data;
-
-    await api.delete(`/sessions/${account.user.id}`);
-
     localStorage.removeItem('@memoria:token');
     localStorage.removeItem('@memoria:account');
 
     setData({} as AuthState);
-  }, [data]);
+  }, []);
 
   const updateAvatar = useCallback(
     async (user: User) => {

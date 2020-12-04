@@ -65,17 +65,26 @@ export const Container = styled.div`
             overflow: auto;
 
             li {
+              display: flex;
               list-style: none;
               flex: 1;
               text-align: center;
+              align-items: center;
               list-style: none;
               padding: 5px;
               background: #fff;
               box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
               border-radius: 8px;
               max-width: 300px;
+
               span {
                 font-size: 11px;
+              }
+
+              button {
+                background: none;
+                border: 0;
+                margin-left: 10px;
               }
             }
           }

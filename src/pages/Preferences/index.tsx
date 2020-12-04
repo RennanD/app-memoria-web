@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
+import { FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 
 import SideBar from '../../components/SideBar';
@@ -50,6 +51,35 @@ const Preferences: React.FC = () => {
     [handleToggleNewSubategoryModal],
   );
 
+  const handleDeletePreference = useCallback(
+    async (category: string, subcategory: string) => {
+      const selectedCategory = preferences.find(
+        preference => preference.category === category,
+      );
+
+      const filteredSubcategories = selectedCategory?.subcategories.filter(
+        subcategoryItem => subcategoryItem !== subcategory,
+      );
+
+      if (selectedCategory && filteredSubcategories) {
+        const updatedCategory = {
+          _id: selectedCategory?._id,
+          category: selectedCategory?.category,
+          subcategories: filteredSubcategories,
+        };
+
+        const filteredCategories = preferences.filter(
+          preference => preference.category !== category,
+        );
+
+        setPreferences([...filteredCategories, updatedCategory]);
+
+        await api.delete(`/admin/preferences/${category}/${subcategory}`);
+      }
+    },
+    [preferences],
+  );
+
   useEffect(() => {
     async function loadPreferences(): Promise<void> {
       const response = await api.get('/preferences/list');
@@ -80,6 +110,17 @@ const Preferences: React.FC = () => {
                     {preference.subcategories.map(subcategory => (
                       <li key={subcategory}>
                         <span>{subcategory}</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleDeletePreference(
+                              preference.category,
+                              subcategory,
+                            );
+                          }}
+                        >
+                          <FiTrash color="#c53030" size={14} />
+                        </button>
                       </li>
                     ))}
                   </ul>
