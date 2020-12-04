@@ -5,7 +5,8 @@ import Route from './Route';
 import Login from '../pages/Login';
 import Preferences from '../pages/Preferences';
 import Messages from '../pages/Messages';
-import GenericDates from '../pages/GenericDates';
+// import GenericDates from '../pages/GenericDates';
+import Dates from '../pages/Dates';
 import AcceptInvites from '../pages/AcceptInvites';
 
 interface RouteParams {
@@ -55,7 +56,7 @@ const Routes: React.FC = () => {
 
       <Route path="/dashboard" component={Preferences} isPrivate />
       <Route path="/messages" component={Messages} isPrivate />
-      <Route path="/generic-dates" component={GenericDates} isPrivate />
+      <Route path="/generic-dates" component={Dates} isPrivate />
     </BrowserRouter>
   );
 };
